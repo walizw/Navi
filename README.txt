@@ -11,7 +11,7 @@ well, as it existed, using that name might lead to problems.
 The following is a TODO list for the project:
 
 - Kernel
-  - [ ] Simple Bootloader (to get started it could be a BIOS bootloader)
+  - [X] Simple Bootloader (to get started it could be a BIOS bootloader)
   - [ ] Showing stuff to screen using text mode
   - [ ] Heap
   - [ ] Paging
