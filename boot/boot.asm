@@ -70,6 +70,10 @@ load32:
 	mov esp, ebp
 	jmp $
 
+	;; enable a20 line
+	in al, 0x92
+	or al, 2
+	out 0x92, al
 
 	times 510-($ - $$) db 0
 	dw 0xAA55
