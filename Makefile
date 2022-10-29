@@ -1,19 +1,50 @@
+CROSS_CC_PATH=~/opt/cross/bin
+
 ECHO=echo
-CC=gcc
 ASM=nasm
-LD=ld
+CC=$(CROSS_CC_PATH)/i686-elf-gcc
+LD=$(CROSS_CC_PATH)/i686-elf-ld
+QEMU=qemu-system-x86_64
+GDB=gdb
 
-CFLAGS=-Wall -Werror -std=gnu99 -O0 -g
+CFLAGS=-g -ffreestanding -falign-jumps -falign-functions -falign-labels \
+	-falign-loops -fstrength-reduce -fomit-frame-pointer \
+	-finline-functions -Wno-unused-function -fno-builtin \
+	-Werror -Wno-unused-label -Wno-cpp -Wno-unused-parameter -nostdlib \
+	-nodefaultlibs -Wall -O0 -I. -std=gnu99
+ASFLAGS=-f elf -g
 
-OBJS=build/boot/boot.asm.o
+OBJS=build/kernel.asm.o build/kernel.o
 OUT=bin/navi.bin
 
-all: $(OBJS)
+all: build/boot/boot.asm.o build/kernel.bin
 	@$(ECHO) "Linking kernel"
+	@rm -rf $(OUT)
+	@dd if=build/boot/boot.asm.o >> $(OUT)
+	@dd if=build/kernel.bin >> $(OUT)
+	@dd if=/dev/zero bs=512 count=100 >> $(OUT)
+
+build/kernel.bin: $(OBJS)
+	@$(LD) -g -relocatable $(OBJS) -o build/kernel.out
+	@$(CC) -T linker.ld -o $@ $(CFLAGS) build/kernel.out
 
 build/boot/boot.asm.o: boot/boot.asm
 	@$(ECHO) "ASM\t\t"$<
 	@$(ASM) -f bin $< -o $@
 
+build/kernel.asm.o: kernel.asm
+	@$(ECHO) "ASM\t\t"$<
+	@$(ASM) $(ASFLAGS) $< -o $@
+
+build/kernel.o: kernel.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf build/boot/boot.asm.o $(OBJS) $(OUT) build/kernel.out
+
+run: all
+	@$(QEMU) -hda $(OUT)
+
+gdb: all
+	@$(GDB) -x gdb_commands.txt

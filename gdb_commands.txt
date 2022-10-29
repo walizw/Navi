@@ -1,0 +1,2 @@
+add-symbol-file build/kernel.out 0x100000
+target remote | qemu-system-x86_64 -hda bin/navi.bin -S -gdb stdio

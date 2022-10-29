@@ -1,0 +1,10 @@
+-Wno-unused-function
+-Werror
+-Wno-unused-label
+-Wno-cpp
+-Wno-unused-parameter
+-nostdlib
+-nodefaultlibs
+-Wall
+-I.
+-std=gnu99
