@@ -12,7 +12,7 @@ The following is a TODO list for the project:
 
 - Kernel
   - [X] Simple Bootloader (to get started it could be a BIOS bootloader)
-  - [ ] Showing stuff to screen using text mode
+  - [X] Showing stuff to screen using text mode
   - [ ] Heap
   - [ ] Paging
   - [ ] ATA driver

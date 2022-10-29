@@ -14,7 +14,9 @@ CFLAGS=-g -ffreestanding -falign-jumps -falign-functions -falign-labels \
 	-nodefaultlibs -Wall -O0 -I. -std=gnu99
 ASFLAGS=-f elf -g
 
-OBJS=build/kernel.asm.o build/kernel.o
+OBJS=build/kernel.asm.o build/kernel.o build/drivers/vga/vga.o \
+	build/drivers/vga/term.o build/string/string.o
+
 OUT=bin/navi.bin
 
 all: build/boot/boot.asm.o build/kernel.bin
@@ -37,6 +39,18 @@ build/kernel.asm.o: kernel.asm
 	@$(ASM) $(ASFLAGS) $< -o $@
 
 build/kernel.o: kernel.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/drivers/vga/vga.o: drivers/vga/vga.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/drivers/vga/term.o: drivers/vga/term.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/string/string.o: string/string.c
 	@$(ECHO) "CC\t\t"$<
 	@$(CC) $(CFLAGS) -c $< -o $@
 
