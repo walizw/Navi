@@ -1,3 +1,9 @@
+/*
+ * kernel.h - Basic datatype definitions used throughout the kernel.
+ *
+ * Copyright (C) 2022 walizw <yojan.bustamante@udea.edu.co>
+ */
+
 #ifndef __KERNEL_H
 #define __KERNEL_H
 

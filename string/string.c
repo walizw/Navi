@@ -1,3 +1,9 @@
+/*
+ * string.c - Generic functions for string/memory management.
+ *
+ * Copyright (C) 2022 walizw <yojan.bustamante@udea.edu.co>
+ */
+
 #include "string.h"
 
 u32

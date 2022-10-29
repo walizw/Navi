@@ -1,3 +1,9 @@
+/*
+ * term.h - Function definitions for managing a simple "terminal" for printing out text to the screen in text mode.
+ *
+ * Copyright (C) 2022 walizw <yojan.bustamante@udea.edu.co>
+ */
+
 #ifndef __TERM_H
 #define __TERM_H
 

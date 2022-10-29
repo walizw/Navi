@@ -1,3 +1,9 @@
+/*
+ * vga.c - Basic text mode functions.
+ *
+ * Copyright (C) 2022 walizw <yojan.bustamante@udea.edu.co>
+ */
+
 #include "vga.h"
 
 u16 *vidmem = (u16 *)0xB8000;

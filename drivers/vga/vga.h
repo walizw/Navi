@@ -1,3 +1,10 @@
+/*
+ * vga.h - Definitions of basic VGA functions and the colours available in text
+ * mode.
+ *
+ * Copyright (C) 2022 walizw <yojan.bustamante@udea.edu.co>
+ */
+
 #ifndef __VGA_H
 #define __VGA_H
 

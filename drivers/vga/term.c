@@ -1,3 +1,9 @@
+/*
+ * term.c - A very basic "terminal" helper to print out stuff to the screen.
+ *
+ * Copyright (C) 2022 walizw <yojan.bustamante@udea.edu.co>
+ */
+
 #include "term.h"
 
 u16 row = 0;
