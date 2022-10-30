@@ -14,10 +14,13 @@ int
 kmain (void)
 {
   term_init ();
-  term_print ("Terminal initialised.\n");
+  term_print ("Terminal Initialised.\n");
 
   idt_init ();
   term_print ("IDT Initialised.\n");
+
+  enable_interrupts ();
+  term_print ("Interrupts Enabled.\n");
 
   return 0;
 }

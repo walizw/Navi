@@ -6,12 +6,30 @@
  */
 
 #include "idt.h"
-#include "config.h"
+#include <config.h>
+
+#include <io/io.h>
 
 extern void idt_load (struct idtr_desc *ptr);
 
+extern void int21h ();
+extern void no_interrupt ();
+
 struct idt_desc idt_descriptors[NAVI_TOTAL_INTERRUPTS];
 struct idtr_desc idtr_descriptor;
+
+void
+int21h_handler ()
+{
+  term_print ("keyboard pressed\n");
+  outb (0x20, 0x20);
+}
+
+void
+no_interrupt_handler ()
+{
+  outb (0x20, 0x20);
+}
 
 void
 idt_zero ()
@@ -37,8 +55,14 @@ idt_init ()
   idtr_descriptor.limit = sizeof (idt_descriptors) - 1;
   idtr_descriptor.base = (u32)idt_descriptors;
 
+  for (int i = 0; i < NAVI_TOTAL_INTERRUPTS; i++)
+    {
+      idt_set (i, no_interrupt);
+    }
+
   // set the interrupts before the idt is loaded
   idt_set (0, idt_zero);
+  idt_set (0x21, int21h);
 
   // load the idt
   idt_load (&idtr_descriptor);
