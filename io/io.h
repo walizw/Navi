@@ -1,3 +1,9 @@
+/*
+ * io.c - Functions for outputting and getting info from the CPU bus.
+ *
+ * Copyright (C) 2022 walizw <yojan.bustamante@udea.edu.co>
+ */
+
 #ifndef __IO_H
 #define __IO_H
 
