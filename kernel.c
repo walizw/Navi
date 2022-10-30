@@ -8,11 +8,16 @@
 
 #include <drivers/vga/term.h>
 
+#include <idt/idt.h>
+
 int
 kmain (void)
 {
   term_init ();
-  term_print ("Welcome to Navi!\nAn operating system made for fun.");
+  term_print ("Terminal initialised.\n");
+
+  idt_init ();
+  term_print ("IDT Initialised.\n");
 
   return 0;
 }

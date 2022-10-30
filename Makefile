@@ -15,7 +15,8 @@ CFLAGS=-g -ffreestanding -falign-jumps -falign-functions -falign-labels \
 ASFLAGS=-f elf -g
 
 OBJS=build/kernel.asm.o build/kernel.o build/drivers/vga/vga.o \
-	build/drivers/vga/term.o build/string/string.o
+	build/drivers/vga/term.o build/string/string.o build/idt/idt.o \
+	build/idt/idt.asm.o build/mm/mm.o
 
 OUT=bin/navi.bin
 
@@ -51,6 +52,18 @@ build/drivers/vga/term.o: drivers/vga/term.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 build/string/string.o: string/string.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/idt/idt.o: idt/idt.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/idt/idt.asm.o: idt/idt.asm
+	@$(ECHO) "ASM\t\t"$<
+	@$(ASM) $(ASFLAGS) $< -o $@
+
+build/mm/mm.o: mm/mm.c
 	@$(ECHO) "CC\t\t"$<
 	@$(CC) $(CFLAGS) -c $< -o $@
 

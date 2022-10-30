@@ -1,5 +1,6 @@
 	[BITS 32]
 	global _start
+
 	extern kmain
 
 	CODE_SEG equ 0x08
