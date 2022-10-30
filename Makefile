@@ -16,7 +16,7 @@ ASFLAGS=-f elf -g
 
 OBJS=build/kernel.asm.o build/kernel.o build/drivers/vga/vga.o \
 	build/drivers/vga/term.o build/string/string.o build/idt/idt.o \
-	build/idt/idt.asm.o build/mm/mm.o
+	build/idt/idt.asm.o build/mm/mm.o build/io/io.asm.o
 
 OUT=bin/navi.bin
 
@@ -66,6 +66,10 @@ build/idt/idt.asm.o: idt/idt.asm
 build/mm/mm.o: mm/mm.c
 	@$(ECHO) "CC\t\t"$<
 	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/io/io.asm.o: io/io.asm
+	@$(ECHO) "ASM\t\t"$<
+	@$(ASM) $(ASFLAGS) $< -o $@
 
 clean:
 	@rm -rf build/boot/boot.asm.o $(OBJS) $(OUT) build/kernel.out
