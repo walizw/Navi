@@ -18,6 +18,9 @@ extern void no_interrupt ();
 struct idt_desc idt_descriptors[NAVI_TOTAL_INTERRUPTS];
 struct idtr_desc idtr_descriptor;
 
+/*
+ * The int21h (pic irq 1) handler
+ */
 void
 int21h_handler ()
 {
@@ -25,18 +28,27 @@ int21h_handler ()
   outb (0x20, 0x20);
 }
 
+/*
+ * All the interrupts will come here, where they'll just be acknowledged.
+ */
 void
 no_interrupt_handler ()
 {
   outb (0x20, 0x20);
 }
 
+/*
+ * The 0x00 interrupt (division by zero exception)
+ */
 void
 idt_zero ()
 {
   term_print ("Divide by zero error\n");
 }
 
+/*
+ * Sets a single interrupt in the idt to `addr'
+ */
 void
 idt_set (int i, void *addr)
 {
@@ -48,6 +60,9 @@ idt_set (int i, void *addr)
   desc->offset_2 = (u32)addr >> 16;
 }
 
+/*
+ * Initialises the IDT
+ */
 void
 idt_init ()
 {

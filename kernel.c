@@ -10,6 +10,9 @@
 
 #include <idt/idt.h>
 
+/*
+ * Kernel entry point.
+ */
 int
 kmain (void)
 {

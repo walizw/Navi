@@ -9,6 +9,9 @@
 u16 row = 0;
 u16 col = 0;
 
+/*
+ * Initialises the "terminal" and clears the screen.
+ */
 void
 term_init ()
 {
@@ -24,6 +27,9 @@ term_init ()
     }
 }
 
+/*
+ * Writes a single character to the screen - and also handles newlines.
+ */
 void
 term_writec (char c, enum vga_col color)
 {
@@ -44,6 +50,9 @@ term_writec (char c, enum vga_col color)
     }
 }
 
+/*
+ * Prints a string to the screen.
+ */
 void
 term_print (const char *str)
 {

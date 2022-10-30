@@ -9,10 +9,24 @@
 
 #include <kernel.h>
 
+/*
+ * Gets a byte from `port' in processor bus.
+ */
 u8 insb (u16 port);
+
+/*
+ * Gets a word from `port' in the processor bus.
+ */
 u16 insw (u8 port);
 
+/*
+ * Outputs `val' byte to the `port' in processor bus.
+ */
 void outb (u16 port, u8 val);
+
+/*
+ * Outputs `val' word to the `port' in processor bus.
+ */
 void outw (u16 port, u16 val);
 
 #endif

@@ -4,6 +4,9 @@
  * Copyright (C) 2022 walizw <yojan.bustamante@udea.edu.co>
  */
 
+/*
+ * Sets the value of `ptr' of `c' by a specified size.
+ */
 void *
 memset (void *ptr, int c, unsigned long size)
 {

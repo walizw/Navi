@@ -6,6 +6,9 @@
 
 #include "string.h"
 
+/*
+ * Returns the length of a string.
+ */
 u32
 strlen (const char *str)
 {
