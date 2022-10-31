@@ -9,6 +9,7 @@
 #include <drivers/vga/term.h>
 
 #include <idt/idt.h>
+#include <mm/heap/kheap.h>
 
 /*
  * Kernel entry point.
@@ -21,6 +22,9 @@ kmain (void)
 
   idt_init ();
   term_print ("IDT Initialised.\n");
+
+  kheap_init ();
+  term_print ("Enabled Heap.\n");
 
   enable_interrupts ();
   term_print ("Interrupts Enabled.\n");

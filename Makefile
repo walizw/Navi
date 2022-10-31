@@ -4,7 +4,7 @@ ECHO=echo
 ASM=nasm
 CC=$(CROSS_CC_PATH)/i686-elf-gcc
 LD=$(CROSS_CC_PATH)/i686-elf-ld
-QEMU=qemu-system-x86_64
+QEMU=qemu-system-i386
 GDB=gdb
 
 CFLAGS=-g -ffreestanding -falign-jumps -falign-functions -falign-labels \
@@ -16,7 +16,8 @@ ASFLAGS=-f elf -g
 
 OBJS=build/kernel.asm.o build/kernel.o build/drivers/vga/vga.o \
 	build/drivers/vga/term.o build/string/string.o build/idt/idt.o \
-	build/idt/idt.asm.o build/mm/mm.o build/io/io.asm.o
+	build/idt/idt.asm.o build/mm/mm.o build/mm/heap/heap.o \
+	build/mm/heap/kheap.o build/io/io.asm.o
 
 OUT=bin/navi.bin
 
@@ -64,6 +65,14 @@ build/idt/idt.asm.o: idt/idt.asm
 	@$(ASM) $(ASFLAGS) $< -o $@
 
 build/mm/mm.o: mm/mm.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/mm/heap/heap.o: mm/heap/heap.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/mm/heap/kheap.o: mm/heap/kheap.c
 	@$(ECHO) "CC\t\t"$<
 	@$(CC) $(CFLAGS) -c $< -o $@
 

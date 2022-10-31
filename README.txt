@@ -13,7 +13,7 @@ The following is a TODO list for the project:
 - Kernel
   - [X] Simple Bootloader (to get started it could be a BIOS bootloader)
   - [X] Showing stuff to screen using text mode
-  - [ ] Heap
+  - [X] Heap
   - [ ] Paging
   - [ ] ATA driver
   - [ ] FAT Filesystem (it could be FAT16 to get started)
@@ -53,3 +53,17 @@ implemented in the most efficient way, or a lack of other functionalities and
 that, with time I will improve everything!
 
 I hope this is also useful for you!
+
+== Directory Structure ==
+
+There are already a lot of folders in the navi source code - and there are still
+a lot of things pendant to implement - so this is a brief summary of what's in
+every directory:
+
+- boot: bootloader's source
+- drivers: drivers that are used in the navi kernel
+- idt: interrupt descriptor table implementation
+- io: input/output related code
+- mm: memory management code (such as heap and paging)
+- string: string related functions
+- toolchain: the navi toolchain (there's another readme you might want to read)

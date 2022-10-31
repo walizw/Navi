@@ -1,1 +1,4 @@
-- the idt implementation might lead to a panic?
+- we should detect how much memory the computer has and set that amount to the
+  size of the heap
+  - there should also be a heap streamer
+  - heap should also be optimised
