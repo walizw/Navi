@@ -21,12 +21,18 @@
 
 typedef unsigned char HEAP_BLOCK_TABLE_ENTRY;
 
+/*
+ * the heap table
+ */
 struct heap_table
 {
   HEAP_BLOCK_TABLE_ENTRY *entries;
   u32 total; // total entries
 };
 
+/*
+ * heap structure containing the table and its starting address
+ */
 struct heap
 {
   struct heap_table *table;

@@ -14,7 +14,7 @@ The following is a TODO list for the project:
   - [X] Simple Bootloader (to get started it could be a BIOS bootloader)
   - [X] Showing stuff to screen using text mode
   - [X] Heap
-  - [ ] Paging
+  - [P] Paging
   - [ ] ATA driver
   - [ ] FAT Filesystem (it could be FAT16 to get started)
   - [ ] User land

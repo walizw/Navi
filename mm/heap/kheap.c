@@ -11,6 +11,9 @@
 struct heap kheap;
 struct heap_table kheap_table;
 
+/*
+ * initialises the kernel heap
+ */
 void
 kheap_init ()
 {
@@ -28,12 +31,34 @@ kheap_init ()
     }
 }
 
+/*
+ * allocates memory in the kernel heap
+ */
 void *
 kmalloc (u32 size)
 {
   return heap_malloc (&kheap, size);
 }
 
+/*
+ * allocates memory and zeroes it
+ */
+void *
+kzalloc (u32 size)
+{
+  void *ptr = kmalloc (size);
+  if (!ptr)
+    {
+      return 0x00;
+    }
+
+  memset (ptr, 0x00, size);
+  return ptr;
+}
+
+/*
+ * frees memory in the kernel heap
+ */
 void
 kfree (void *ptr)
 {

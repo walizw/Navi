@@ -13,6 +13,7 @@
 
 void kheap_init ();
 void *kmalloc (u32 size);
+void *kzalloc (u32 size);
 void kfree (void *ptr);
 
 #endif

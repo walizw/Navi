@@ -17,7 +17,8 @@ ASFLAGS=-f elf -g
 OBJS=build/kernel.asm.o build/kernel.o build/drivers/vga/vga.o \
 	build/drivers/vga/term.o build/string/string.o build/idt/idt.o \
 	build/idt/idt.asm.o build/mm/mm.o build/mm/heap/heap.o \
-	build/mm/heap/kheap.o build/io/io.asm.o
+	build/mm/heap/kheap.o build/mm/paging/paging.o \
+	build/mm/paging/paging.asm.o build/io/io.asm.o
 
 OUT=bin/navi.bin
 
@@ -75,6 +76,14 @@ build/mm/heap/heap.o: mm/heap/heap.c
 build/mm/heap/kheap.o: mm/heap/kheap.c
 	@$(ECHO) "CC\t\t"$<
 	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/mm/paging/paging.o: mm/paging/paging.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/mm/paging/paging.asm.o: mm/paging/paging.asm
+	@$(ECHO) "ASM\t\t"$<
+	@$(ASM) $(ASFLAGS) $< -o $@
 
 build/io/io.asm.o: io/io.asm
 	@$(ECHO) "ASM\t\t"$<

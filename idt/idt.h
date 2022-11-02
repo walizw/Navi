@@ -15,6 +15,9 @@
 
 #include <mm/mm.h>
 
+/*
+ * single idt descriptor structure
+ */
 struct idt_desc
 {
   u16 offset_1; // offset bits 0 - 15
@@ -24,6 +27,9 @@ struct idt_desc
   u16 offset_2; // offset bits 16-31
 } __attribute__ ((packed));
 
+/*
+ * interrupt descriptor table
+ */
 struct idtr_desc
 {
   u16 limit; // size of descriptor table - 1

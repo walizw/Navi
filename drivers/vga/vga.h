@@ -13,6 +13,9 @@
 
 #include <kernel.h>
 
+/*
+ * the available vga colours
+ */
 enum vga_col
 {
   VGA_BLACK,
