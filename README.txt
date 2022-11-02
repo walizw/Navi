@@ -14,7 +14,7 @@ The following is a TODO list for the project:
   - [X] Simple Bootloader (to get started it could be a BIOS bootloader)
   - [X] Showing stuff to screen using text mode
   - [X] Heap
-  - [P] Paging
+  - [X] Paging
   - [ ] ATA driver
   - [ ] FAT Filesystem (it could be FAT16 to get started)
   - [ ] User land
@@ -30,13 +30,18 @@ The following is a TODO list for the project:
     - It's basically an own network protocol, think of freenet, for example
   - [ ] Cryptography
   - [ ] Multi user
+  - [ ] Timers
   - [ ] Audio driver
   - [ ] Video mode support
   - [ ] Mouse driver
   - [ ] GUI
+    - [ ] Image loader
+      - Support for displaying images
     - [ ] Login system
     - [ ] Window manager
+    - [ ] Compositor
     - [ ] Some other utilities
+      - [ ] Terminal Emulator
       - [ ] File manager
       - [ ] Text editor
       - [ ] Protocol 7 browser

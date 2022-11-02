@@ -31,6 +31,9 @@ struct paging_4gb_chunk *paging_new_4gb (u8 flags);
 void paging_switch (u32 *dir);
 u32 *paging_4gb_chunk_get_directory (struct paging_4gb_chunk *chunk);
 
+_Bool paging_is_aligned (void *addr);
+int paging_set (u32 *dir, void *virt, u32 val);
+
 /*
  * enables paging (should not be called until a 4gb chunk is created and
  * switched to it)

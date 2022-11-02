@@ -40,8 +40,19 @@ kmain (void)
                                  | PAGING_ACCESS_FROM_ALL);
   paging_switch (paging_4gb_chunk_get_directory (kernel_chunk));
 
+  char *ptr = kzalloc (4096);
+  paging_set (paging_4gb_chunk_get_directory (kernel_chunk), (void *)0x1000,
+              (u32)ptr | PAGING_ACCESS_FROM_ALL | PAGING_IS_PRESENT
+                  | PAGING_IS_WRITEABLE);
+
   // enable paging
   paging_enable ();
+
+  char *ptr2 = (char *)0x1000;
+  ptr2[0] = 'A';
+  ptr2[1] = 'B';
+  term_print (ptr2);
+  term_print (ptr);
 
   // enabled interrupts
   enable_interrupts ();
