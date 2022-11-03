@@ -14,11 +14,16 @@ CFLAGS=-g -ffreestanding -falign-jumps -falign-functions -falign-labels \
 	-nodefaultlibs -Wall -O0 -I. -std=gnu99
 ASFLAGS=-f elf -g
 
-OBJS=build/kernel.asm.o build/kernel.o build/drivers/vga/vga.o \
-	build/drivers/vga/term.o build/string/string.o build/idt/idt.o \
+OBJS=build/kernel.asm.o build/kernel.o build/string/string.o build/idt/idt.o \
 	build/idt/idt.asm.o build/mm/mm.o build/mm/heap/heap.o \
 	build/mm/heap/kheap.o build/mm/paging/paging.o \
 	build/mm/paging/paging.asm.o build/io/io.asm.o
+
+# VGA Driver
+OBJS+=build/drivers/vga/vga.o build/drivers/vga/term.o
+
+# ATA Driver
+OBJS+=build/drivers/disk/disk.o
 
 OUT=bin/navi.bin
 
@@ -42,14 +47,6 @@ build/kernel.asm.o: kernel.asm
 	@$(ASM) $(ASFLAGS) $< -o $@
 
 build/kernel.o: kernel.c
-	@$(ECHO) "CC\t\t"$<
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-build/drivers/vga/vga.o: drivers/vga/vga.c
-	@$(ECHO) "CC\t\t"$<
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-build/drivers/vga/term.o: drivers/vga/term.c
 	@$(ECHO) "CC\t\t"$<
 	@$(CC) $(CFLAGS) -c $< -o $@
 
@@ -88,6 +85,20 @@ build/mm/paging/paging.asm.o: mm/paging/paging.asm
 build/io/io.asm.o: io/io.asm
 	@$(ECHO) "ASM\t\t"$<
 	@$(ASM) $(ASFLAGS) $< -o $@
+
+# VGA Driver
+build/drivers/vga/vga.o: drivers/vga/vga.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/drivers/vga/term.o: drivers/vga/term.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# ATA Driver
+build/drivers/disk/disk.o: drivers/disk/disk.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -rf build/boot/boot.asm.o $(OBJS) $(OUT) build/kernel.out

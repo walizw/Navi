@@ -17,7 +17,7 @@ u8 insb (u16 port);
 /*
  * Gets a word from `port' in the processor bus.
  */
-u16 insw (u8 port);
+u16 insw (u16 port);
 
 /*
  * Outputs `val' byte to the `port' in processor bus.

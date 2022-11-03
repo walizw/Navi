@@ -15,7 +15,7 @@ The following is a TODO list for the project:
   - [X] Showing stuff to screen using text mode
   - [X] Heap
   - [X] Paging
-  - [ ] ATA driver
+  - [P] ATA driver
   - [ ] FAT Filesystem (it could be FAT16 to get started)
   - [ ] User land
   - [ ] Tasks
@@ -48,6 +48,8 @@ The following is a TODO list for the project:
       - [ ] System monitor
       - [ ] Video player
       - [ ] Image viewer
+  - [ ] Doom
+    - I want to kill demons in Navi \o/
 - Toolchain
   - Refer to `toolchain/README.txt'
 
