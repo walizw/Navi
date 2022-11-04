@@ -6,6 +6,7 @@
 
 #include "kernel.h"
 
+#include <drivers/disk/disk.h>
 #include <drivers/vga/term.h>
 
 #include <idt/idt.h>
@@ -34,6 +35,10 @@ kmain (void)
   // initialised heap
   kheap_init ();
   term_print ("Initialised Heap.\n");
+
+  // initialise disks
+  disk_search_and_init ();
+  term_print ("Initialised Disks.\n");
 
   // setup paging
   kernel_chunk = paging_new_4gb (PAGING_IS_WRITEABLE | PAGING_IS_PRESENT

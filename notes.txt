@@ -2,3 +2,4 @@
   size of the heap
   - there should also be a heap streamer
   - heap should also be optimised
+- support for multiple disks and partitions

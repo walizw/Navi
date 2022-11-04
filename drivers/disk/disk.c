@@ -7,6 +7,11 @@
 #include "disk.h"
 
 /*
+ * primary hard disk
+ */
+struct disk disk;
+
+/*
  * reads `total' sectors from `lba' into `buf'
  */
 int
@@ -38,4 +43,40 @@ disk_read_sector (int lba, int total, void *buf)
     }
 
   return 0;
+}
+
+/*
+ * searches for disks and initialises them
+ */
+void
+disk_search_and_init ()
+{
+  // TODO: This should do something as multiple disks are not implemented
+  memset (&disk, 0, sizeof (disk));
+  disk.type = NAVI_DISK_TYPE_REAL;
+  disk.sector_size = NAVI_SECTOR_SIZE;
+}
+
+/*
+ * gets a disk from a - future? - disk array
+ */
+struct disk *
+disk_get (int i)
+{
+  if (i != 0)
+    return 0;
+
+  return &disk;
+}
+
+/*
+ * reads `total' sectors from `idisk'
+ */
+int
+disk_read_block (struct disk *idisk, u32 lba, i32 total, void *buf)
+{
+  if (idisk != &disk)
+    return -EIO;
+
+  return disk_read_sector (lba, total, buf);
 }

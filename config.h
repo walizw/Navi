@@ -11,4 +11,6 @@
 #define NAVI_HEAP_ADDR 0x01000000
 #define NAVI_HEAP_TABLE_ADDR 0x7E00
 
+#define NAVI_SECTOR_SIZE 512
+
 #endif
