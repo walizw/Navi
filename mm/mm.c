@@ -19,3 +19,21 @@ memset (void *ptr, int c, u32 size)
     }
   return ptr;
 }
+
+/*
+ * Checks if `p1' and `p2' are the same, `count' amount of bytes.
+ */
+int
+memcmp (void *p1, void *p2, int count)
+{
+  char *c1 = p1;
+  char *c2 = p2;
+
+  while (count-- > 0)
+    {
+      if (*c1++ != *c2++)
+        return c1[-1] < c2[-1] ? -1 : 1;
+    }
+
+  return 0;
+}

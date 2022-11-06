@@ -17,7 +17,7 @@ ASFLAGS=-f elf -g
 OBJS=build/kernel.asm.o build/kernel.o build/string/string.o build/idt/idt.o \
 	build/idt/idt.asm.o build/mm/mm.o build/mm/heap/heap.o \
 	build/mm/heap/kheap.o build/mm/paging/paging.o \
-	build/mm/paging/paging.asm.o build/io/io.asm.o
+	build/mm/paging/paging.asm.o build/io/io.asm.o build/fs/pparser.o
 
 # VGA Driver
 OBJS+=build/drivers/vga/vga.o build/drivers/vga/term.o
@@ -85,6 +85,10 @@ build/mm/paging/paging.asm.o: mm/paging/paging.asm
 build/io/io.asm.o: io/io.asm
 	@$(ECHO) "ASM\t\t"$<
 	@$(ASM) $(ASFLAGS) $< -o $@
+
+build/fs/pparser.o: fs/pparser.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # VGA Driver
 build/drivers/vga/vga.o: drivers/vga/vga.c

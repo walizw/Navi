@@ -10,5 +10,8 @@
 #include <kernel.h>
 
 u32 strlen (const char *str);
+u32 strnlen (const char *str, u32 max);
+_Bool isdigit (char c);
+int tonumericdigit (char c);
 
 #endif

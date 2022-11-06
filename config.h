@@ -13,4 +13,6 @@
 
 #define NAVI_SECTOR_SIZE 512
 
+#define NAVI_MAX_PATH 108
+
 #endif

@@ -10,5 +10,6 @@
 #include <kernel.h>
 
 void *memset (void *ptr, int c, u32 size);
+int memcmp (void *p1, void *p2, int count);
 
 #endif
