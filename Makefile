@@ -23,7 +23,7 @@ OBJS=build/kernel.asm.o build/kernel.o build/string/string.o build/idt/idt.o \
 OBJS+=build/drivers/vga/vga.o build/drivers/vga/term.o
 
 # ATA Driver
-OBJS+=build/drivers/disk/disk.o
+OBJS+=build/drivers/disk/disk.o build/drivers/disk/streamer.o
 
 OUT=bin/navi.bin
 
@@ -101,6 +101,10 @@ build/drivers/vga/term.o: drivers/vga/term.c
 
 # ATA Driver
 build/drivers/disk/disk.o: drivers/disk/disk.c
+	@$(ECHO) "CC\t\t"$<
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+build/drivers/disk/streamer.o: drivers/disk/streamer.c
 	@$(ECHO) "CC\t\t"$<
 	@$(CC) $(CFLAGS) -c $< -o $@
 
